@@ -1,0 +1,58 @@
+{
+  "image": "docker-osint-stack/spiderfoot:v4.0",
+  "summary": {
+    "fatal": 1,
+    "warn": 0,
+    "info": 3,
+    "skip": 0,
+    "pass": 12
+  },
+  "details": [
+    {
+      "code": "CIS-DI-0010",
+      "title": "Do not store credential in environment variables/files",
+      "level": "FATAL",
+      "alerts": [
+        "Suspicious filename found : usr/local/lib/python3.9/site-packages/docx/settings.py (You can suppress it with \"-af settings.py\")",
+        "Suspicious filename found : usr/local/lib/python3.9/site-packages/docx/oxml/settings.py (You can suppress it with \"-af settings.py\")",
+        "Suspicious filename found : usr/local/lib/python3.9/site-packages/docx/parts/settings.py (You can suppress it with \"-af settings.py\")"
+      ]
+    },
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    },
+    {
+      "code": "CIS-DI-0008",
+      "title": "Confirm safety of setuid/setgid files",
+      "level": "INFO",
+      "alerts": [
+        "setuid file: urwxr-xr-x usr/bin/newgrp",
+        "setuid file: urwxr-xr-x usr/bin/gpasswd",
+        "setuid file: urwxr-xr-x usr/bin/umount",
+        "setuid file: urwxr-xr-x usr/bin/su",
+        "setgid file: grwxr-xr-x usr/sbin/unix_chkpwd",
+        "setuid file: urwxr-xr-x usr/bin/mount",
+        "setuid file: urwxr-xr-x usr/bin/chsh",
+        "setgid file: grwxr-xr-x usr/bin/chage",
+        "setgid file: grwxr-xr-x usr/bin/expiry",
+        "setuid file: urwxr-xr-x usr/bin/chfn",
+        "setuid file: urwxr-xr-x usr/bin/passwd"
+      ]
+    },
+    {
+      "code": "DKL-LI-0003",
+      "title": "Only put necessary files",
+      "level": "INFO",
+      "alerts": [
+        "Suspicious directory : opt/spiderfoot/.git ",
+        "unnecessary file : opt/spiderfoot/docker-compose.yml ",
+        "unnecessary file : opt/spiderfoot/Dockerfile "
+      ]
+    }
+  ]
+}

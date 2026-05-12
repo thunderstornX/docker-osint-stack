@@ -1,0 +1,46 @@
+{
+  "image": "docker-osint-stack/harvester:4.10.1",
+  "summary": {
+    "fatal": 0,
+    "warn": 0,
+    "info": 3,
+    "skip": 0,
+    "pass": 13
+  },
+  "details": [
+    {
+      "code": "CIS-DI-0005",
+      "title": "Enable Content trust for Docker",
+      "level": "INFO",
+      "alerts": [
+        "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+      ]
+    },
+    {
+      "code": "CIS-DI-0006",
+      "title": "Add HEALTHCHECK instruction to the container image",
+      "level": "INFO",
+      "alerts": [
+        "not found HEALTHCHECK statement"
+      ]
+    },
+    {
+      "code": "CIS-DI-0008",
+      "title": "Confirm safety of setuid/setgid files",
+      "level": "INFO",
+      "alerts": [
+        "setuid file: urwxr-xr-x usr/bin/chfn",
+        "setgid file: grwxr-xr-x usr/bin/expiry",
+        "setgid file: grwxr-xr-x usr/sbin/unix_chkpwd",
+        "setuid file: urwxr-xr-x usr/bin/su",
+        "setuid file: urwxr-xr-x usr/bin/gpasswd",
+        "setuid file: urwxr-xr-x usr/bin/mount",
+        "setuid file: urwxr-xr-x usr/bin/umount",
+        "setuid file: urwxr-xr-x usr/bin/newgrp",
+        "setuid file: urwxr-xr-x usr/bin/chsh",
+        "setuid file: urwxr-xr-x usr/bin/passwd",
+        "setgid file: grwxr-xr-x usr/bin/chage"
+      ]
+    }
+  ]
+}

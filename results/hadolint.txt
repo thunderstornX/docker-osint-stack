@@ -1,0 +1,5 @@
+=== HADOLINT — SpiderFoot Dockerfile ===
+(exit 0)
+
+=== HADOLINT — theHarvester Dockerfile ===
+(exit 0)
