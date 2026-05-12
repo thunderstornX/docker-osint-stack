@@ -1,0 +1,108 @@
+# ─────────────────────────────────────────────────────────────────
+# docker-osint-stack — production-shaped Compose definition.
+# Schema 3.8 so this file is portable between docker-compose v1.29+
+# and the modern `docker compose` plugin.
+# ─────────────────────────────────────────────────────────────────
+version: "3.8"
+
+x-hardening: &hardening
+  security_opt:
+    - no-new-privileges:true
+  restart: unless-stopped
+
+networks:
+  stack-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  spiderfoot-data:
+
+services:
+  # ───────────────────── Postgres audit log ─────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: dos-postgres
+    <<: *hardening
+    env_file:
+      - ./config/.env
+    environment:
+      POSTGRES_USER:     ${POSTGRES_USER:-osint}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in config/.env}
+      POSTGRES_DB:       ${POSTGRES_DB:-osint_audit}
+      # Locale tightened so audit timestamps render predictably.
+      LANG: C.UTF-8
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./services/audit-log/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    networks: [stack-net]
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER:-osint} -d ${POSTGRES_DB:-osint_audit}
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 15s
+
+  # ─────────────────────── SpiderFoot UI ────────────────────────
+  spiderfoot:
+    build:
+      context: ./services/spiderfoot
+      args:
+        SPIDERFOOT_REF: v4.0
+    image: docker-osint-stack/spiderfoot:v4.0
+    container_name: dos-spiderfoot
+    <<: *hardening
+    depends_on:
+      - postgres
+    env_file:
+      - ./config/.env
+    volumes:
+      - spiderfoot-data:/home/spider/data
+    networks: [stack-net]
+    # NOTE: NOT published on a host port. Nginx is the only externally
+    # reachable surface in this stack.
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--fail", "http://127.0.0.1:5001/"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ───────────────── theHarvester (one-shot tool) ───────────────
+  # `profiles: ["oneshot"]` keeps this OUT of `up`. Invoke via:
+  #   docker compose --profile oneshot run --rm harvester -d acme.example -b all
+  harvester:
+    build:
+      context: ./services/harvester
+      args:
+        HARVESTER_VERSION: 4.10.1
+    image: docker-osint-stack/harvester:4.10.1
+    container_name: dos-harvester
+    profiles: ["oneshot"]
+    <<: *hardening
+    networks: [stack-net]
+    volumes:
+      - ./exports:/home/harvester/out
+
+  # ───────────────────── Nginx front door ───────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: dos-nginx
+    <<: *hardening
+    depends_on:
+      - spiderfoot
+    ports:
+      # Bound to localhost by default. Do NOT expose to 0.0.0.0 without
+      # putting basic-auth + TLS in front of this.
+      - "${NGINX_HOST_BIND:-127.0.0.1}:${NGINX_HOST_PORT:-8080}:8080"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [stack-net]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
