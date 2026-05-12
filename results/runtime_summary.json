@@ -1,0 +1,52 @@
+{
+  "schema_version": "1",
+  "as_of_utc": "2026-05-12T19:26:17Z",
+  "boot": {
+    "wall_clock_seconds_to_healthy": 7.48,
+    "method": "/usr/bin/time -f '%e' bash scripts/start.sh",
+    "services_waited_for": [
+      "dos-postgres",
+      "dos-spiderfoot",
+      "dos-nginx"
+    ]
+  },
+  "idle_resource_use": {
+    "method": "docker stats --no-stream, captured ~3s after all healthchecks green",
+    "containers": [
+      {
+        "name": "dos-postgres",
+        "ram_mib": 36.86,
+        "cpu_percent": 0.02
+      },
+      {
+        "name": "dos-spiderfoot",
+        "ram_mib": 106.2,
+        "cpu_percent": 0.08
+      },
+      {
+        "name": "dos-nginx",
+        "ram_mib": 10.18,
+        "cpu_percent": 0.0
+      }
+    ],
+    "total_ram_mib": 153.24
+  },
+  "smoke_test": {
+    "script": "tests/test_stack.sh",
+    "assertions": 10,
+    "passed": 10,
+    "failed": 0,
+    "exercises": [
+      "compose syntax validates",
+      "config/.env present",
+      "scripts/start.sh boots stack to healthy",
+      "postgres pg_isready",
+      "spiderfoot HTTP 200 on container",
+      "nginx /healthz returns 'ok'",
+      "nginx \u2192 spiderfoot reverse proxy returns 200",
+      "audit-log schema has all 4 tables",
+      "audit-log CTE round-trip exercises sessions/invocations/findings",
+      "theHarvester one-shot profile executes -h"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+=== docker stats (single sample, idle) ===
+NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O       BLOCK I/O
+dos-nginx        0.00%     10.18MiB / 15.39GiB   0.06%     8.48kB / 0B   0B / 0B
+dos-spiderfoot   0.08%     106.2MiB / 15.39GiB   0.67%     8.84kB / 0B   0B / 0B
+dos-postgres     0.02%     36.86MiB / 15.39GiB   0.23%     9.2kB / 0B    139kB / 0B

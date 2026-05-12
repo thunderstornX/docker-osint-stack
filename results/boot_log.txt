@@ -1,0 +1,29 @@
+[start] bringing up the stack…
+time="2026-05-13T00:24:34+05:00" level=warning msg="/home/alim/Desktop/my_github_portfolio/repos/docker-osint-stack/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network docker-osint-stack_stack-net Creating 
+ Network docker-osint-stack_stack-net Created 
+ Volume docker-osint-stack_spiderfoot-data Creating 
+ Volume docker-osint-stack_spiderfoot-data Created 
+ Volume docker-osint-stack_postgres-data Creating 
+ Volume docker-osint-stack_postgres-data Created 
+ Container dos-postgres Creating 
+ Container dos-postgres Created 
+ Container dos-spiderfoot Creating 
+ Container dos-spiderfoot Created 
+ Container dos-nginx Creating 
+ Container dos-nginx Created 
+ Container dos-postgres Starting 
+ Container dos-postgres Started 
+ Container dos-spiderfoot Starting 
+ Container dos-spiderfoot Started 
+ Container dos-nginx Starting 
+ Container dos-nginx Started 
+[start] waiting for dos-postgres: ..healthy
+[start] waiting for dos-spiderfoot: healthy
+[start] waiting for dos-nginx: healthy
+
+[start] all services healthy.
+[start] SpiderFoot UI is reachable at  http://127.0.0.1:8080/
+[start] (the host port is bound to localhost by default; do NOT expose to 0.0.0.0
+[start]  without basic-auth + TLS in front).
+7.48 seconds

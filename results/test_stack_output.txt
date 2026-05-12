@@ -1,0 +1,13 @@
+[test] compose syntax … PASS
+[test] env file present … PASS
+[test] bring stack up … PASS
+[test] postgres ready … PASS
+[test] spiderfoot HTTP 200 … PASS
+[test] nginx /healthz reachable … PASS
+[test] nginx → spiderfoot proxy works … PASS
+[test] audit-log tables exist … PASS
+[test] audit-log insert round trip … PASS
+[test] theHarvester --help via oneshot profile … PASS
+
+[test] 10 pass, 0 fail
+[test] tearing down…

@@ -1,0 +1,56 @@
+time="2026-05-13T00:25:45+05:00" level=warning msg="/home/alim/Desktop/my_github_portfolio/repos/docker-osint-stack/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[start] bringing up the stack…
+time="2026-05-13T00:25:45+05:00" level=warning msg="/home/alim/Desktop/my_github_portfolio/repos/docker-osint-stack/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network docker-osint-stack_stack-net Creating 
+ Network docker-osint-stack_stack-net Created 
+ Volume docker-osint-stack_spiderfoot-data Creating 
+ Volume docker-osint-stack_spiderfoot-data Created 
+ Volume docker-osint-stack_postgres-data Creating 
+ Volume docker-osint-stack_postgres-data Created 
+ Container dos-postgres Creating 
+ Container dos-postgres Created 
+ Container dos-spiderfoot Creating 
+ Container dos-spiderfoot Created 
+ Container dos-nginx Creating 
+ Container dos-nginx Created 
+ Container dos-postgres Starting 
+ Container dos-postgres Started 
+ Container dos-spiderfoot Starting 
+ Container dos-spiderfoot Started 
+ Container dos-nginx Starting 
+ Container dos-nginx Started 
+[start] waiting for dos-postgres: ..healthy
+[start] waiting for dos-spiderfoot: healthy
+[start] waiting for dos-nginx: healthy
+
+[start] all services healthy.
+[start] SpiderFoot UI is reachable at  http://127.0.0.1:8080/
+[start] (the host port is bound to localhost by default; do NOT expose to 0.0.0.0
+[start]  without basic-auth + TLS in front).
+/var/run/postgresql:5432 - accepting connections
+1
+time="2026-05-13T00:25:53+05:00" level=warning msg="/home/alim/Desktop/my_github_portfolio/repos/docker-osint-stack/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container docker-osint-stack-harvester-run-2b806b87d1ca Creating 
+ Container docker-osint-stack-harvester-run-2b806b87d1ca Created 
+write /dev/stdout: broken pipe
+[teardown] stopping containers…
+time="2026-05-13T00:25:57+05:00" level=warning msg="/home/alim/Desktop/my_github_portfolio/repos/docker-osint-stack/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container dos-nginx Stopping 
+ Container dos-nginx Stopped 
+ Container dos-nginx Removing 
+ Container dos-nginx Removed 
+ Container dos-spiderfoot Stopping 
+ Container dos-spiderfoot Stopped 
+ Container dos-spiderfoot Removing 
+ Container dos-spiderfoot Removed 
+ Container dos-postgres Stopping 
+ Container dos-postgres Stopped 
+ Container dos-postgres Removing 
+ Container dos-postgres Removed 
+ Volume docker-osint-stack_postgres-data Removing 
+ Volume docker-osint-stack_spiderfoot-data Removing 
+ Network docker-osint-stack_stack-net Removing 
+ Volume docker-osint-stack_spiderfoot-data Removed 
+ Volume docker-osint-stack_postgres-data Removed 
+ Network docker-osint-stack_stack-net Removed 
+[teardown] done.
