@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "docker-osint-stack: A single-command Docker Compose OSINT collection environment"
+message: "If you use this stack in academic or professional work, please cite it as below."
+type: software
+authors:
+  - given-names: "Ali Murtaza"
+    family-names: "Bhutto"
+    orcid: "https://orcid.org/0009-0007-2787-943X"
+license: MIT
+repository-code: "https://github.com/thunderstornX/docker-osint-stack"
+keywords:
+  - OSINT
+  - Docker
+  - SpiderFoot
+  - theHarvester
+  - containerization
+  - investigation workflow
+  - audit logging
+  - DevSecOps
+abstract: >
+  docker-osint-stack is a reproducible Docker Compose deployment that bundles
+  SpiderFoot (passive reconnaissance), theHarvester (subdomain and email
+  enumeration), a PostgreSQL audit-log database, and an Nginx reverse proxy
+  into a single-command launch. The stack ships with four investigation
+  workflow templates (domain reconnaissance, social media OSINT, credential
+  exposure, and a blank custom template), a secure teardown script that wipes
+  volumes and shreds logs, and a GPG-encrypted findings export. All
+  Dockerfiles are linted with hadolint; images are scanned with Trivy for
+  CVEs and with Dockle for CIS-style misconfigurations; raw scan outputs are
+  committed under results/.

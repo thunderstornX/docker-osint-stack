@@ -1,0 +1,33 @@
+{
+  "title": "docker-osint-stack: A single-command Docker Compose OSINT collection environment with audit logging and encrypted export",
+  "description": "<p>A reproducible Docker Compose stack bundling <strong>SpiderFoot v4.0</strong> (passive reconnaissance), <strong>theHarvester 4.10.1</strong> (subdomain and email enumeration), a <strong>PostgreSQL 16</strong> audit-log database, and an <strong>Nginx 1.27</strong> reverse proxy. The stack ships with four investigation workflow templates (domain reconnaissance, social media OSINT, credential exposure, custom blank template), a secure <code>teardown.sh</code> that stops containers, removes volumes, and shreds logs, and an <code>export_findings.sh</code> that GPG-encrypts a <code>pg_dump</code> of the audit log. All Dockerfiles are hadolint-clean; both custom images are scanned with Trivy and Dockle; raw scan outputs and live boot measurements are committed under <code>results/</code> so every claim in the README is reproducible.</p><p><strong>The README serves as the methodology document for this artefact.</strong> No separate paper accompanies this release.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Bhutto, Ali Murtaza",
+      "orcid": "0009-0007-2787-943X"
+    }
+  ],
+  "keywords": [
+    "OSINT",
+    "Docker",
+    "SpiderFoot",
+    "theHarvester",
+    "containerization",
+    "investigation workflow",
+    "audit logging",
+    "DevSecOps",
+    "hadolint",
+    "Trivy",
+    "Dockle"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/thunderstornX/docker-osint-stack",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "access_right": "open"
+}

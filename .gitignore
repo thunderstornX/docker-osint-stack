@@ -1,0 +1,30 @@
+# Local environment
+.env
+.env.local
+config/.env
+
+# Stack state
+exports/*.gpg
+exports/*.tar.gz
+exports/*.sql
+postgres-data/
+spiderfoot-data/
+
+# Scan transients (we DO commit the curated results/, just not raw temp scratches)
+results/*.tmp
+results/scratch/
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# LaTeX build artefacts (keep paper.tex, paper.pdf; drop transients)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
