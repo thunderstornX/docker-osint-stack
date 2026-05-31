@@ -18,6 +18,7 @@
 [![smoke tests](https://img.shields.io/badge/smoke%20tests-10%2F10%20PASS-brightgreen)](results/runtime_summary.json)
 [![boot time](https://img.shields.io/badge/boot%20to%20healthy-7.5s-brightgreen)](results/runtime_summary.json)
 [![idle RAM](https://img.shields.io/badge/idle%20RAM-153%20MiB-blue)](results/runtime_summary.json)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20480469.svg)](https://doi.org/10.5281/zenodo.20480469)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 A reproducible Docker Compose stack that bundles **SpiderFoot v4.0**,
