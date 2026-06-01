@@ -12,7 +12,7 @@
 # the workflow templates — it is not a long-running daemon.
 # ─────────────────────────────────────────────────────────────────
 # hadolint global ignore=DL3013
-FROM python:3.12-slim-bookworm AS build
+FROM python:3.12-slim-bookworm@sha256:42ada43c4265e1ed6db62ad8df62af99a4abb9a9d49622032522ac76efb0bcef AS build
 
 ARG HARVESTER_VERSION=4.10.1
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -42,7 +42,7 @@ RUN pip install --no-cache-dir .
 # ─────────────────────────────────────────────────────────────────
 # Runtime stage.
 # ─────────────────────────────────────────────────────────────────
-FROM python:3.12-slim-bookworm AS runtime
+FROM python:3.12-slim-bookworm@sha256:42ada43c4265e1ed6db62ad8df62af99a4abb9a9d49622032522ac76efb0bcef AS runtime
 
 ARG HARVESTER_VERSION=4.10.1
 LABEL org.opencontainers.image.title="docker-osint-stack/harvester" \

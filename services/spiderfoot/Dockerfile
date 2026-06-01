@@ -6,7 +6,7 @@
 # release tag. Pinning a tag is more reproducible than pinning HEAD.
 # ─────────────────────────────────────────────────────────────────
 # hadolint global ignore=DL3013
-FROM python:3.9-slim-bookworm AS build
+FROM python:3.9-slim-bookworm@sha256:03dee9ce00747bb5390e7b4ad00307b4dbc7790f7da77cc3581f93cfa99a6363 AS build
 
 ARG SPIDERFOOT_REF=v4.0
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -41,7 +41,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # ─────────────────────────────────────────────────────────────────
 # Runtime stage — slim, non-root, healthchecked.
 # ─────────────────────────────────────────────────────────────────
-FROM python:3.9-slim-bookworm AS runtime
+FROM python:3.9-slim-bookworm@sha256:03dee9ce00747bb5390e7b4ad00307b4dbc7790f7da77cc3581f93cfa99a6363 AS runtime
 
 ARG SPIDERFOOT_REF=v4.0
 LABEL org.opencontainers.image.title="docker-osint-stack/spiderfoot" \

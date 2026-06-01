@@ -180,10 +180,13 @@ fix):
   imports. The patch path is "wait for upstream to ship v4.1+"; we
   pin to a *tag*, not a commit, so a rebuild picks up upstream
   fixes automatically when they ship.
-- For the **base images**, we pin to a major-version `*-alpine` tag
-  rather than `:latest`; rebuilding fetches the current patch
-  release. The numbers above are correct as of `as_of_utc` in
-  `results/scan_summary.json`.
+- For the **base images** (`postgres:16-alpine`, `nginx:1.27-alpine`,
+  `python:3.12-slim-bookworm`, `python:3.9-slim-bookworm`), we pin both
+  the human-readable tag and an immutable `@sha256:` digest in the
+  Compose file and Dockerfiles, so a rebuild resolves byte-for-byte to
+  the same base layers. To adopt an upstream patch release, re-pin the
+  digest deliberately. The numbers above are correct as of `as_of_utc`
+  in `results/scan_summary.json`.
 
 ### Container best-practice (Dockle v0.4.15)
 

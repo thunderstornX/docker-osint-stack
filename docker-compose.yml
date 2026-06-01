@@ -21,7 +21,7 @@ volumes:
 services:
   # ───────────────────── Postgres audit log ─────────────────────
   postgres:
-    image: postgres:16-alpine
+    image: postgres:16-alpine@sha256:79950da386bda7fcc9d57aa9aa9be6c6d7407596a9b8f68014b09a778a9ab316
     container_name: dos-postgres
     <<: *hardening
     env_file:
@@ -88,7 +88,7 @@ services:
 
   # ───────────────────── Nginx front door ───────────────────────
   nginx:
-    image: nginx:1.27-alpine
+    image: nginx:1.27-alpine@sha256:62223d644fa234c3a1cc785ee14242ec47a77364226f1c811d2f669f96dc2ac8
     container_name: dos-nginx
     <<: *hardening
     depends_on:
